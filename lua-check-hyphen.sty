@@ -3,8 +3,8 @@
 % Licensed under the MIT license. See the file 'mit-license.txt' for exact terms.
 
 % Don't change these two lines, they are updated automatically
-\def\luachekchyphenpkgdate{2012/06/19}
-\def\luachekchyphenversion{0.1}
+\def\luacheckhyphenpkgdate{2012/06/19}
+\def\luacheckhyphenversion{0.1}
 
 
 \RequirePackage{ifluatex}
@@ -16,24 +16,24 @@
 
 \DeclareOption*{\setkeys{luacheckhyphen}{\CurrentOption}}
 
-\ProvidesPackage{lua-check-hyphen}[\luachekchyphenpkgdate\space v\luachekchyphenversion\space Hyphenation checking for LuaTeX (PGU)]
+\ProvidesPackage{lua-check-hyphen}[\luacheckhyphenpkgdate\space v\luacheckhyphenversion\space Hyphenation checking for LuaTeX (PGU)]
 
 
 
-\def\luachekchyphendothings{\directlua{luachekchyphen.enable() }}
+\def\luacheckhyphendothings{\directlua{luacheckhyphen.enable() }}
 
-\define@key{luacheckhyphen}{nofile}[true]{\directlua{luachekchyphen.nofile  = "\luaescapestring{#1}"}}
-\define@key{luacheckhyphen}{compact}[true]{\directlua{luachekchyphen.compact  = "\luaescapestring{#1}"}}
-\define@key{luacheckhyphen}{final}[true]{\directlua{luachekchyphen.final  = "\luaescapestring{#1}"}}
-\define@key{luacheckhyphen}{mark}[true]{\directlua{luachekchyphen.mark     = "\luaescapestring{#1}"}}
-\define@key{luacheckhyphen}{whitelist}{\directlua{luachekchyphen.whitelist = "\luaescapestring{#1}"}}
+\define@key{luacheckhyphen}{nofile}[true]{\directlua{luacheckhyphen.nofile  = "\luaescapestring{#1}"}}
+\define@key{luacheckhyphen}{compact}[true]{\directlua{luacheckhyphen.compact  = "\luaescapestring{#1}"}}
+\define@key{luacheckhyphen}{final}[true]{\directlua{luacheckhyphen.final  = "\luaescapestring{#1}"}}
+\define@key{luacheckhyphen}{mark}[true]{\directlua{luacheckhyphen.mark     = "\luaescapestring{#1}"}}
+\define@key{luacheckhyphen}{whitelist}{\directlua{luacheckhyphen.whitelist = "\luaescapestring{#1}"}}
 
 
 \ifluatex
-  \AtBeginDocument{\luachekchyphendothings}
-  \directlua{luachekchyphen = require('lua-check-hyphen')}
+  \AtBeginDocument{\luacheckhyphendothings}
+  \directlua{luacheckhyphen = require('lua-check-hyphen')}
   \def\LuaCheckHyphen#1{\setkeys{luacheckhyphen}{#1}}
-  \AtEndDocument{\directlua{luachekchyphen.listhyphenatedwords()}}
+  \AtEndDocument{\directlua{luacheckhyphen.listhyphenatedwords()}}
 \else
   \def\LuaCheckHyphen#1{}
   \message{Warning: lua-check-hyphen only works with LuaTeX (LaTeX format for now)}
